@@ -28,7 +28,6 @@ module.exports = (sequelize) => {
       get() {
         return this.getDataValue('life_span') + ' Years';
       }
-    }
-
+    },
   });
 };
