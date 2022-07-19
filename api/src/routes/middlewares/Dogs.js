@@ -20,7 +20,7 @@ const GetApiInfo = async () => {
 };
 
 const getDbInfo = async () => {
-const allDogsDb = await Dog.findAll({
+    const allDogsDb = await Dog.findAll({
         include: {
             model: Temperament,
             attributes: ["name"],
@@ -29,16 +29,16 @@ const allDogsDb = await Dog.findAll({
             }
         }
     })
-const allDogsResult = await allDogsDb.map(e =>{
-    return{
-        id: e.id,
-        name: e.name,
-        weight: e.weight,
-        height: e.height,
-        life_span: e.life_span,
-        temperament: e.temperament.map(t =>t.name).join()
-    }
-})
+    // const allDogsResult = await allDogsDb.map(e =>{
+    //     return{
+    //         id: e.id,
+    //         name: e.name,
+    //         weight: e.weight,
+    //         height: e.height,
+    //         life_span: e.life_span,
+    //         temperament: e.temperament.map(t =>t.name.join())
+    //     }
+    // })
 
 }
 
@@ -46,48 +46,57 @@ const getAllDogs = async () => {
     const apiInfo = await GetApiInfo();
     const dbInfo = await getDbInfo();
     const infoTotal = apiInfo.concat(dbInfo);
+
     return infoTotal
 }
 router.get("/", async (req, res) => {
-    let{ name }= req.query
+    let { name } = req.query
 
     let dogsTotal = await getAllDogs();
-    if(name){
-        let dogsName = dogsTotal.filter(e => {if(e && e.name){return e.name.toLowerCase().includes(name.toLowerCase())}});
-        console.log(dogsName)
-        if(dogsName.length){
+    if (name) {
+        let dogsName = dogsTotal.filter(e => { if (e && e.name) { return e.name.toLowerCase().includes(name.toLowerCase()) } });
+        if (dogsName.length) {
             res.status(200).send(dogsName);
-        }else{
+        } else {
             res.status(404).send("No existe esa raza de perro");
         }
-    }else{
-    res.status(200).json(dogsTotal)
+    } else {
+        res.status(200).json(dogsTotal)
     }
 })
 
 router.get("/:id", async (req, res) => {
-  
-});
+    try {
+        let { id } = req.params;
+
+        id = Number(id);
+        let dogsTotal = await getAllDogs();
+        dogsTotal = dogsTotal.filter(e => { if (e && e.id) { return e.id === id } });
+        console.log("dogs filtrado");
+        if (dogsTotal.length) {
+            res.status(201).json(dogsTotal)
+        } else {
+            res.send("No se encontro la raza del  Id")
+        };
+    } catch (error) {
+        res.send(error)
+    }
+})
+
 
 router.post("/", async (req, res) => {
-    let { id, name, height, weight, life_span, createdInDb, temperament } = req.body;
+    let { name, height, weight, life_span, createdInDb, temperament } = req.body;
 
-    if ( !name || !height || !weight) return res.status(404).send("Falta enviar datos obligatorios")
+    if (!name || !height || !weight) return res.status(404).send("Falta enviar datos obligatorios")
     try {
-
-
         let dogCreated = await Dog.create({
-            id,
             name,
             height,
             weight,
             life_span,
             createdInDb,
         })
-        let temperamentDb = await Temperament.findAll({
-            where: { name: temperament }
-        })
-        dogCreated.addTemperament(temperamentDb)
+        await dogCreated.addTemperament(temperament)
         res.send("Personajes creado con exito")
     } catch (error) {
         return res.status(404).send("Error en alguno de los datos provistos")
