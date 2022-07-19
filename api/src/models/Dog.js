@@ -29,5 +29,10 @@ module.exports = (sequelize) => {
         return this.getDataValue('life_span') + ' Years';
       }
     },
+    createdInDb:{
+      type: DataTypes.BOOLEAN,
+      allowNull:false,
+      defaultValue:true,
+    }
   });
 };

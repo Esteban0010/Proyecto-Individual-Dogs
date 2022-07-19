@@ -48,13 +48,13 @@ const getAllDogs = async () => {
     const infoTotal = apiInfo.concat(dbInfo);
     return infoTotal
 }
-
 router.get("/", async (req, res) => {
-    const name = req.query.name
+    let{ name }= req.query
 
     let dogsTotal = await getAllDogs();
     if(name){
-        let dogsName = await dogsTotal.filter(e => e.name.toLowerCase().includes(name.toLowerCase()));
+        let dogsName = dogsTotal.filter(e => {if(e && e.name){return e.name.toLowerCase().includes(name.toLowerCase())}});
+        console.log(dogsName)
         if(dogsName.length){
             res.status(200).send(dogsName);
         }else{
@@ -64,6 +64,35 @@ router.get("/", async (req, res) => {
     res.status(200).json(dogsTotal)
     }
 })
+
+router.get("/:id", async (req, res) => {
+  
+});
+
+router.post("/", async (req, res) => {
+    let { id, name, height, weight, life_span, createdInDb, temperament } = req.body;
+
+    if ( !name || !height || !weight) return res.status(404).send("Falta enviar datos obligatorios")
+    try {
+
+
+        let dogCreated = await Dog.create({
+            id,
+            name,
+            height,
+            weight,
+            life_span,
+            createdInDb,
+        })
+        let temperamentDb = await Temperament.findAll({
+            where: { name: temperament }
+        })
+        dogCreated.addTemperament(temperamentDb)
+        res.send("Personajes creado con exito")
+    } catch (error) {
+        return res.status(404).send("Error en alguno de los datos provistos")
+    }
+});
 
 
 

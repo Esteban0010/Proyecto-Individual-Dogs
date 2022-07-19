@@ -19,9 +19,14 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
+const {getAllTemperament} = require('./src/Utils/getAllTemperament.js')
+
+
+
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
+  getAllTemperament();
   server.listen(3001, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
