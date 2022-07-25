@@ -1,0 +1,36 @@
+// home////
+//// const [currentPage, setCurrentPage] = useState(1);//guardamos en un stado local la pagina actual(currentPage),arrancando desde la pagina 1
+    // const [dogsPerPage, setDogsPerPage]= useState(8);// guardamos cuantos dogs queremso por page,8
+    // const indexLastDog = currentPage * dogsPerPage;// dogs en la posicion 8
+    // const indexOfFirstDog =indexLastDog - dogsPerPage;// dog en la posicion 0
+    // const currentDogs = allRazes.slice(indexOfFirstDog,indexLastDog);
+
+    // const paginado =(pageNumber)=>{
+    //     setCurrentPage(pageNumber)
+    // }
+
+//  <Paginado
+//                 dogsPerPage= {dogsPerPage}
+//                 allRazes= {allRazes}
+//                 paginado= {paginado}
+//                 />
+//                 {currentDogs?.map((el) => {//mapeamos los dogs actuales
+//                     return (
+//                         <fragment className='cartas'>
+//                             <Link to={"/home/" + el.id}>
+//                                 <Card name={el.name} image={el.image} temperament={el.temperament} weight={el.weight} key={el.id} />
+//                             </Link>
+//                         </fragment>
+//                     ) 
+// home///////
+// paginado///
+<nav>
+            <ul className="paginado">
+                {pageNumbers &&
+                    pageNumbers.map(number => {//devolvemos cada uno de los rumeros que tiene el paginado
+                       return <li className="number" key={number}>
+                            <button onClick={() => paginado(number)}>{number}</button>
+                        </li>
+                    })}
+            </ul>
+        </nav>

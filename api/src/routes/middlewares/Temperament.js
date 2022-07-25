@@ -16,12 +16,4 @@ try {
 })
 
 
-
-
-
-    
-    
-
-
-
 module.exports = router;
