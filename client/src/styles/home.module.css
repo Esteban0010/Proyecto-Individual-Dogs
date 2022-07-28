@@ -1,0 +1,23 @@
+.fondo {
+    background: radial-gradient(blue 30%, cyan);
+}
+.title{
+    text-align: center;
+    color: #6a6a6a;
+    margin-top: 100px;
+    /* font-family: sans-serif; */
+    font-size: 40px;
+    font-weight: 100;
+}
+
+.card_home {
+    margin: auto;
+    display: block;
+    display: grid;
+    border: solid white;
+
+    grid-template-columns: repeat(4, 350px);
+    grid-template-rows: repeat(4, 130px);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}

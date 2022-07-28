@@ -12,15 +12,18 @@ const GetApiInfo = async () => {
     else{
          temperaments= ["Sin Temperamentos registrados"]
     }
+        let height_max= el.height.metric.split("-").pop().trim()
+        let height_min= el.height.metric.split("-").shift().trim()
+        let weight_max= el.weight.metric.split("-").pop().trim()
+        let weight_min= el.weight.metric.split("-").shift().trim()
+        let life_span_min= el.life_span.split("-").shift()
+        let life_span_max= el.life_span.split("-").pop().trim().split(" ").shift()
         return {
             id: el.id,
             name: el.name,
-            height_max: el.height.metric.split("-").pop().trim(),
-            height_min: el.height.metric.split("-").shift().trim(),
-            weight_max: el.weight.metric.split("-").pop().trim(),
-            weight_min: el.weight.metric.split("-").shift().trim(),
-            life_span_min: el.life_span.split("-").shift(),
-            life_span_max:el.life_span.split("-").pop().trim().split(" ").shift(),
+            weight:[Number(weight_min),Number(weight_max)],
+            height:[Number(height_min),Number(height_max)],
+            life_span:[Number(life_span_min),Number(life_span_max)],
             image: el.image.url,
             temperaments: temperaments
         }
@@ -109,20 +112,25 @@ router.get("/:id", async (req, res) => {
 
 
 router.post("/", async (req, res) => {
-    let { name, height, weight, life_span, createdInDb, temperament } = req.body;
+    let { name, height, weight, life_span, createdInDb, temperament ,image} = req.body;
+    console.log(req.body)
 
     if (!name || !height || !weight) return res.status(404).send("Falta enviar datos obligatorios")
     try {
+        console.log("entre al try")
         let dogCreated = await Dog.create({
             name,
             height,
             weight,
             life_span,
+            image,
             createdInDb,
         })
         await dogCreated.addTemperament(temperament)
-        res.send("Personajes creado con exito")
+        
+        return res.send("Personajes creado con exito")
     } catch (error) {
+        console.log("entre al catch")
         return res.status(404).send("Error en alguno de los datos provistos")
     }
 });

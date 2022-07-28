@@ -1,13 +1,13 @@
 import axios from 'axios';
-export const GET_ALL_DOGS =" OBTENER TODOS LOS DOGS";
+export const GET_ALL_DOGS = " OBTENER TODOS LOS DOGS";
 export const GET_ID_RAZA = "OBTENER UNA RAZA";
 export const FILTER_CREATED = "FILTRA DEPENDIENDO DE DONDE PROVIEEN LOS DOGS"
 
 
-export function getDogs(){
-    return async function(dispatch){
-        var json = await axios.get('http://localhost:3001/dogs',{
-            
+export function getDogs() {
+    return async function (dispatch) {
+        var json = await axios.get('http://localhost:3001/dogs', {
+
         });
         return dispatch({
             type: 'GET_ALL_DOGS',
@@ -15,36 +15,80 @@ export function getDogs(){
         })
     }
 }
-export function getNameDogs(name){
-    return async function(dispatch){
-        try{
-            var json= await axios('http://localhost:3001/dogs?name=' + name)
+export function getNameDogs(name) {
+    return async function (dispatch) {
+        try {
+            var json = await axios.get('http://localhost:3001/dogs?name=' + name)
             return dispatch({
-                type:'GET_NAME_DOGS',
+                type: 'GET_NAME_DOGS',
                 payload: json.data
             })
-        }catch(error){
+        } catch (error) {
             console.log(error)
         }
     }
 }
-export function filterbreedsByTemperament(payload){
-    return{
-        type: 'FILTER_BY_TEMPERAMENT',
-        payload
+export function getTemperament() {
+    return async function (dispatch) {
+        var info = await axios.get("http://localhost:3001/temperaments", {
+
+        });
+        return dispatch({
+            type: 'GET_TEMPERAMENTS',
+            payload: info.data
+        })
+    }
+}
+export function postBreeds(payload) {
+    return async function (dispatch) {
+        try {
+            const info = await axios.post('http://localhost:3001/dogs', payload)
+            return dispatch({
+                payload: info.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
 
-export function filterCreated(payload){
+
+export function filterCreated(payload) {
     console.log("entre a la accion")
     return {
         type: "FILTER_CREATED",
         payload
     }
 }
-export function orderByName(payload){
-    return{
+export function orderByName(payload) {
+    return {
         type: 'ORDER_BY_NAME',
         payload
+    }
+}
+export function orderByWeight(payload) {
+    console.log(payload)
+    return {
+        type: 'ORDER_BY_WEIGHT',
+        payload
+    }
+}
+export function filterByTemperament(payload) {
+    return {
+        type: 'FILTER_BY_TEMPERAMENT',
+        payload
+    }
+}
+export function getDeatail(id) {
+    return async function (dispatch) {
+        try {
+            let json = await axios.get('http://localhost:3001/dogs' + id);
+            return dispatch({
+                type: 'GET_DETAILS',
+                payload: json.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 }

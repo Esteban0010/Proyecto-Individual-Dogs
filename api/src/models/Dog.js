@@ -8,25 +8,24 @@ module.exports = (sequelize) => {
       type:DataTypes.UUID,
       defaultValue:DataTypes.UUIDV4,
       primaryKey:true,
-      allowNull:false,
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    image:{
+      type:DataTypes.STRING,
+    },
     height:{
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
       allowNull:false,
     },
     weight:{
-      type:DataTypes.STRING,
+      type:DataTypes.ARRAY(DataTypes.INTEGER),
       allowNull:false,
     },
     life_span:{
-      type:DataTypes.STRING,
-      get() {
-        return this.getDataValue('life_span') + ' Years';
-      }
+      type:DataTypes.ARRAY(DataTypes.INTEGER),
     },
     createdInDb:{
       type: DataTypes.BOOLEAN,

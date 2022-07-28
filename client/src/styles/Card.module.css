@@ -1,8 +1,7 @@
 .bg_Card{
-    justify-content: space-around;
-    padding: 30px;
-    width: 20;
+align-items: center;
+    
 background-image: url('../images/fondo_card.jpg') ;
-float: left;
+
 }
 
