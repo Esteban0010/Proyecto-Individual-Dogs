@@ -1,23 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&family=Roboto&display=swap');
+
 .fondo {
-    background: radial-gradient(blue 30%, cyan);
+    background-image:linear-gradient(rgba(241, 151, 99, 0.925), rgba(138, 125, 121, 0.863)50%);
+    border-radius: 2%;
 }
-.title{
+
+.title {
     text-align: center;
     color: #6a6a6a;
     margin-top: 100px;
-    /* font-family: sans-serif; */
     font-size: 40px;
     font-weight: 100;
+    font-family: "Roboto", sans-serif;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    height: 430px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto
 }
 
 .card_home {
-    margin: auto;
-    display: block;
+    display: flex;
+    justify-content: center;
     display: grid;
-    border: solid white;
-
-    grid-template-columns: repeat(4, 350px);
-    grid-template-rows: repeat(4, 130px);
-    grid-column-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 8px;
     grid-row-gap: 10px;
+}
+
+.spinner {
+    padding-left: 375px;
+    justify-content: center;
+    width: 500px;
+    height: 300px;
+}
+
+.paginacion {
+    display: flex;
+    justify-content: center;
+   padding-bottom: 12;
+
+}
+
+.ajustePag {
+    padding-left: 100px;
 }

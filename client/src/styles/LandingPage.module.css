@@ -1,4 +1,6 @@
 .lpg{
-    background-image: url('../images/Fondo_bg.jpg') ;
+    width: 100%;
+    background-color: aqua;
+    background-image:linear-gradient(rgba(5, 10, 5, 0.80), rgba(90, 40, 90, 0.80)), url('../images/Fondo_bg.jpg') ;
     background-size: 700px;
 }

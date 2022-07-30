@@ -2,17 +2,18 @@ import React, { useState, useEffect } from "react";
 import { Link, useHistory } from 'react-router-dom';
 import { postBreeds, getTemperament } from '../../Redux/Actions/index.js';
 import { useDispatch, useSelector } from 'react-redux';
+import form from '../../styles/Formulario.module.css'
 
 const expreR = {
     name: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/,
 }
+
 function validate(input) {
     let errors = [];
     const reg = new RegExp('^[0-9]+$')
 
     if (!input.name) {
         errors.name = "Este campo es requerido"
-
     } else if (!expreR.name.test(input.name)) {
         errors.name = 'Solo debe contener letras'
     }
@@ -29,7 +30,6 @@ function validate(input) {
         errors.weight_min = "Solo debe contener numeros"
     }
     if (input.weight_max && input.weight_min && Number(input.weight_min) >= Number(input.weight_max)) {
-        // errors.weight = "El peso mínimo no puede ser superior o igual al peso máximo"
         errors.weight_max = "El peso mínimo no puede ser superior o igual al peso máximo"
     }
     if (!input.height_max) {
@@ -44,6 +44,7 @@ function validate(input) {
     }
     if (input.height_max && input.height_min && Number(input.height_min) >= Number(input.height_max)) {
         errors.height_max = "El peso mínimo no puede ser superior o igual al peso máximo"
+        return "El peso mínimo no puede ser superior o igual al peso máximo";
     }
     if(!reg.test(input.life_span_min)){
         errors.life_span_min= "Este campo solo debe contener numeros"
@@ -54,9 +55,6 @@ function validate(input) {
     if(input.life_span_max && input.life_span_min && Number(input.life_span_min) >= Number(input.life_span_max)) {
         errors.life_span_max = "El peso mínimo no puede ser superior o igual al peso máximo"
     }
-
-
-
     return errors;
 }
 
@@ -98,7 +96,7 @@ export default function BreedsCreate() {
 
     function handleSubmit(e) {
         e.preventDefault();
-
+    if(errores && errores.length === 0){
         let temp = temperaments.filter(t => input.temperament.includes(t.name))
         temp = temp.map(t => t.id)
         const postFinal = {
@@ -111,7 +109,6 @@ export default function BreedsCreate() {
         }
         console.log(postFinal)
         dispatch(postBreeds(postFinal))
-        alert("La raza fue creada satisfactoriamente")
         setInput({
             name: "",
             weight_max: '',
@@ -123,7 +120,7 @@ export default function BreedsCreate() {
             image: '',
             temperament: []
         })
-        history.push('/home')
+        history.push('/home')}
     }
 
     function handleDelete(el) {
@@ -135,134 +132,138 @@ export default function BreedsCreate() {
 
     useEffect(() => {
         dispatch(getTemperament());
-    }, []);
+    }, [dispatch]);
     return (
-        <div>
-            <Link to='/home'><button>Home</button></Link>
-            <h1>Crea tu personaje</h1>
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <div >
-                    <label>Nombre : </label>
-                    <input
-                        type='text'
-                        placeholder=" ej: Coco"
-                        value={input.name}
-                        required
-                        name='name'
-                        onChange={(e) => handleChange(e)}
-                    />
-                    {errores.name && (
-                        <p className="error">{errores.name}</p>
-                    )}
-                </div>
-                <h4>Altura</h4>
+        <div className={form.body}>
+        <Link to='/home'><button>Home</button></Link>
+        <h1>Crea tu personaje</h1>
+        <form onSubmit={(e) => handleSubmit(e)}>
+            <div >
+                <label>Nombre : </label>
+                <input
+                    className={form.textLine}
+                    type='text'
+                    value={input.name}
+                    required
+                    name='name'
+                    onChange={(e) => handleChange(e)}
+                />
+                {errores.name && (
+                    <p className={form.formulario_incorrecto}>{errores.name}</p>
+                )}
+            </div>
+            <h4>Altura</h4>
+            <div className={form.textLine}>
+                <label>Valor min : </label>
+                <input
+                    className={form.textLine}
+                    value={input.height_min}
+                    required
+                    name='height_min'
+                    onChange={(e) => handleChange(e)}
+                />
+                {errores.height_min && (
+                    <p className={form.formulario_incorrecto}>{errores.height_min}</p>
+                )}
+            </div>
+            <div className={form.textLine}>
+                <label>Valor max : </label>
+                <input
+                    className={form.textLine}
+                    value={input.height_max}
+                    required
+                    name='height_max'
+                    onChange={(e) => handleChange(e)}
+                />
+                {errores.height_max && (
+                    <p className={form.formulario_incorrecto}>{errores.height_max}</p>
+                )}
+            </div>
+            <h4>Peso</h4>
+            <div className={form.textLine}>
+                <label>valor minimo : </label>
+                <input
+                    className={form.textLine}
+                    value={input.weight_min}
+                    required
+                    name='weight_min'
+                    onChange={(e) => handleChange(e)}
+                />
+                {errores.weight_min && (
+                    <p className={form.formulario_incorrecto}>{errores.weight_min}</p>
+                )}
+            </div>
+            <div className={form.textLine}>
+                <label>valor maximo : </label>
+                <input
+                    className={form.textLine}
+                    value={input.weight_max}
+                    required
+                    name='weight_max'
+                    onChange={(e) => handleChange(e)}
+                />
+                {errores.weight_max && (
+                    <p className={form.formulario_incorrecto}>{errores.weight_max}</p>
+                )}
+            </div>
+            <h4>Esperanza de vida</h4>
+            <div className={form.textLine}>
+                <label>Valor min : </label>
+                <input
+                    className={form.textLine}
+                    type="number"
+                    value={input.life_span_min}
+                    name='life_span_min'
+                    onChange={(e) => handleChange(e)}
+                />
+                {errores.life_span_min && (
+                    <p className={form.formulario_incorrecto}>{errores.life_span_min}</p>
+                )}
+            </div>
+            <div className={form.textLine}>
+                <label>Valor max : </label>
+                <input
+                    className={form.textLine}
+                    type="number"
+                    value={input.life_span_max}
+                    name='life_span_max'
+                    onChange={(e) => handleChange(e)}
+                />{errores.life_span_max && (
+                    <p className={form.formulario_incorrecto}>{errores.life_span_max}</p>
+                )}
+            </div>
+            <div className={form.textLine} >
+                <label>Imagen :</label>
+                <input
+                    className={form.textLine}
+                    type="text"
+                    placeholder="url.."
+                    value={input.image}
+                    name='image'
+                    onChange={(e) => handleChange(e)}
+                />
+            </div>
+            <h4>Temperamento</h4>
+            <select onChange={(e) => handleSelector(e)} className={form.textLine}>
+                {temperaments.map((t) => {
+                    return (
+                        <option value={t.name} key={t.id}>{t.name}</option>
+                    )
+                })}
+            </select>
+            <div>
+                {input.temperament.map((el, i) =>
+                    <div className="divTem" key={i + 1}>
+                        
+                        <button className={form.textLine} type="button" onClick={() => handleDelete(el)}  ><p>{el}</p></button>
+                    </div>
+                )}
+            </div>
                 <div>
-                    <label>Valor min : </label>
-                    <input
-                        placeholder=" ej: 24"
-                        value={input.height_min}
-                        required
-                        name='height_min'
-                        onChange={(e) => handleChange(e)}
-                    />
-                    {errores.height_min && (
-                        <p className="error">{errores.height_min}</p>
-                    )}
-                </div>
-                <div>
-                    <label>Valor max : </label>
-                    <input
-                        placeholder=" ej: 24"
-                        value={input.height_max}
-                        required
-                        name='height_max'
-                        onChange={(e) => handleChange(e)}
-                    />
-                    {errores.height_max && (
-                        <p className="error">{errores.height_max}</p>
-                    )}
-                </div>
-                <h4>Peso</h4>
-                <div>
-                    <label>valor minimo : </label>
-                    <input
-                        placeholder=" ej: 24"
-                        value={input.weight_min}
-                        required
-                        name='weight_min'
-                        onChange={(e) => handleChange(e)}
-                    />
-                    {errores.weight_min && (
-                        <p className="error">{errores.weight_min}</p>
-                    )}
-                </div>
-                <div>
-                    <label>valor maximo : </label>
-                    <input
-                        placeholder=" ej: 24"
-                        value={input.weight_max}
-                        required
-                        name='weight_max'
-                        onChange={(e) => handleChange(e)}
-                    />
-                    {errores.weight_max && (
-                        <p className="error">{errores.weight_max}</p>
-                    )}
-                </div>
-                <h4>Esperanza de vida</h4>
-                <div>
-                    <label>Valor min : </label>
-                    <input
-                        type="number"
-                        placeholder=" ej: 24"
-                        value={input.life_span_min}
-                        name='life_span_min'
-                        onChange={(e) => handleChange(e)}
-                    />
-                    {errores.life_span_min && (
-                        <p className="error">{errores.life_span_min}</p>
-                    )}
-                </div>
-                <div>
-                    <label>Valor max : </label>
-                    <input
-                        type="number"
-                        placeholder=" ej: 24"
-                        value={input.life_span_max}
-                        name='life_span_max'
-                        onChange={(e) => handleChange(e)}
-                    />{errores.life_span_max && (
-                        <p className="error">{errores.life_span_max}</p>
-                    )}
-                </div>
-                <div>
-                    <label>Imagen :</label>
-                    <input
-                        type="text"
-                        placeholder="url.."
-                        value={input.image}
-                        name='image'
-                        onChange={(e) => handleChange(e)}
-                    />
-                </div>
-                <h4>Temperamento</h4>
-                <select onChange={(e) => handleSelector(e)}>
-                    {temperaments.map((t) => {
-                        return (
-                            <option value={t.name}>{t.name}</option>
-                        )
-                    })}
-                </select>
-                <div>
-                    {input.temperament.map(el =>
-                        <div className="divTem">
-                            <p>{el}</p>
-                            <button className="botonX" onClick={() => handleDelete(el)}>X</button>
-                        </div>
-                    )}
-                </div>
-                <div>
-                    <button type="submit">Crear Raza</button>
+                <button className={form.button} >
+                        <span className={form.button.text}>Crear</span>
+                        
+                    </button>
                 </div>
 
             </form>

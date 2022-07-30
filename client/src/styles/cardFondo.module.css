@@ -1,0 +1,9 @@
+.ff{display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(139, 139, 196, 0.39);
+    width: 800px;
+    height: 10%;
+    padding: 100px;
+    justify-content: space-between;
+}

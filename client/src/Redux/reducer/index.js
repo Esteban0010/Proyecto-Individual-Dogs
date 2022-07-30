@@ -1,8 +1,7 @@
 
 const initialState ={
     dogs : [],
-    allDogs: [],
-    allDogsT: [],
+    DogsFiltrados: [],
     temperaments:[],
     detail:[],
 }
@@ -13,13 +12,13 @@ function rootReducer( state = initialState,action){
             return{
                 ...state,
                 dogs:action.payload,
-                allDogs: action.payload,
-                allDogsT: action.payload
+                DogsFiltrados: action.payload,
+               
             }
             case 'GET_NAME_DOGS':
                 return{
                     ...state,
-                    dogs: action.payload
+                    DogsFiltrados: action.payload
                 }
             case 'POST_CHARACTER':
                 return{
@@ -32,7 +31,7 @@ function rootReducer( state = initialState,action){
                 }
             case 'ORDER_BY_NAME':
                 let sortdArr =action.payload=== 'asc' ?
-                state.dogs.sort(function(a,b){
+                state.DogsFiltrados.sort(function(a,b){
                     if(a.name > b.name){
                         return 1;
                     }
@@ -41,7 +40,7 @@ function rootReducer( state = initialState,action){
                     }
                     return 0
                 }):
-                state.dogs.sort(function(a,b){
+                state.DogsFiltrados.sort(function(a,b){
                     if(a.name > b.name){
                         return -1;
                     }
@@ -52,11 +51,11 @@ function rootReducer( state = initialState,action){
                 })
                 return{
                     ...state,
-                    dogs:sortdArr
+                    DogsFiltrados:sortdArr
                 }
                 case 'ORDER_BY_WEIGHT':
                 let sortdWeight =action.payload=== 'min' ?
-                state.dogs.sort(function(a,b){
+                state.DogsFiltrados.sort(function(a,b){
                    
                     if(a.weight[0] > b.weight[0]){
                         return 1;
@@ -75,7 +74,7 @@ function rootReducer( state = initialState,action){
                     }
                     return 0
                 }):
-                state.dogs.sort(function(a,b){
+                state.DogsFiltrados.sort(function(a,b){
                     console.log("entrando a")
                     
                     if(a.weight[0] > b.weight[0]){
@@ -97,20 +96,19 @@ function rootReducer( state = initialState,action){
                 })
                 return{
                     ...state,
-                    dogs:sortdWeight
+                    DogsFiltrados:sortdWeight
                 }
             case 'FILTER_CREATED':
-                const createdFilter = action.payload === 'created' ? state.allDogs.filter(e => e.createdInDb) : state.allDogs.filter(e => !e.createdInDb);
+                const createdFilter = action.payload === 'created' ? state.DogsFiltrados.filter(e => e.createdInDb) : state.DogsFiltrados.filter(e => !e.createdInDb);
                 return{
                     ...state,
-                    dogs: createdFilter
+                    DogsFiltrados: createdFilter
                 }
             case 'FILTER_BY_TEMPERAMENT':
-                const alldogss= state.allDogsT
-                const filterTemps = action.payload=== "All" ?alldogss : alldogss.filter((a)=> a.temperaments.includes(action.payload));
+                const filterTemps = action.payload=== "All" ?state.dogs : state.DogsFiltrados.filter((a)=> a.temperaments.includes(action.payload));
                 return{
                     ...state,
-                    dogs:filterTemps
+                    DogsFiltrados:filterTemps
                 }
             case 'GET_DETAILS':
                 return{

@@ -55,11 +55,7 @@ router.get("/", async (req, res) => {
     let dogsTotal = await getAllDogs();
     if (name) {
         let dogsName = dogsTotal.filter(e => { if (e && e.name) { return e.name.toLowerCase().includes(name.toLowerCase()) } });
-        if (dogsName.length) {
             res.status(200).send(dogsName);
-        } else {
-            res.status(404).send("No existe esa raza de perro");
-        }
     } else {
         res.status(200).json(dogsTotal)
     }
@@ -67,17 +63,6 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
     try {
-        // const id =req.params.id;
-        // const dogsTotal = await getAllDogs();
-        // if(id){
-        //     let dogId = await dogsTotal.filter(el=>el.id ==id);
-        //     dogId.length?
-        //     res.status(201).json(dogId):
-        //     res.status(404).send("No se encontro el personaje")
-        // }
-
-        
-        // console.log(DogDB,"/////////")
         let { id } = req.params;
         let a = Number(id)
         if (!a) {
