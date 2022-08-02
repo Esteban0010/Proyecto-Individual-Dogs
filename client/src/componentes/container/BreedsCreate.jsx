@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from 'react-router-dom';
-import { postBreeds, getTemperament } from '../../Redux/Actions/index.js';
+import { postBreeds, getTemperament, getDogs } from '../../Redux/Actions/index.js';
 import { useDispatch, useSelector } from 'react-redux';
 import form from '../../styles/Formulario.module.css'
+import house from '../../images/house_home.png'
 
 const expreR = {
     name: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/,
@@ -43,8 +44,7 @@ function validate(input) {
         errors.height_min = "Este campo solo debe contener numeros"
     }
     if (input.height_max && input.height_min && Number(input.height_min) >= Number(input.height_max)) {
-        errors.height_max = "El peso mínimo no puede ser superior o igual al peso máximo"
-        return "El peso mínimo no puede ser superior o igual al peso máximo";
+        errors.height_max = "El peso mínimo no puede ser superior o igual al peso máximo";
     }
     if(!reg.test(input.life_span_min)){
         errors.life_span_min= "Este campo solo debe contener numeros"
@@ -96,7 +96,8 @@ export default function BreedsCreate() {
 
     function handleSubmit(e) {
         e.preventDefault();
-    if(errores && errores.length === 0){
+        console.log(errores,"AAAAAAAA")
+    if(!Object.keys(errores).length ){
         let temp = temperaments.filter(t => input.temperament.includes(t.name))
         temp = temp.map(t => t.id)
         const postFinal = {
@@ -107,7 +108,7 @@ export default function BreedsCreate() {
             image: input.image,
             temperament: temp
         }
-        console.log(postFinal)
+        
         dispatch(postBreeds(postFinal))
         setInput({
             name: "",
@@ -134,8 +135,11 @@ export default function BreedsCreate() {
         dispatch(getTemperament());
     }, [dispatch]);
     return (
+        <div className={form.black}>
         <div className={form.body}>
-        <Link to='/home'><button>Home</button></Link>
+        <Link to='/home'><button className={form.btn} >
+               <img className={form.img} src={house} alt="no se encontro imagen"/>
+            </button></Link>
         <h1>Crea tu personaje</h1>
         <form onSubmit={(e) => handleSubmit(e)}>
             <div >
@@ -143,6 +147,7 @@ export default function BreedsCreate() {
                 <input
                     className={form.textLine}
                     type='text'
+                    pattern="^[a-zA-Z\s]+{2,254}"
                     value={input.name}
                     required
                     name='name'
@@ -154,10 +159,11 @@ export default function BreedsCreate() {
             </div>
             <h4>Altura</h4>
             <div className={form.textLine}>
-                <label>Valor min : </label>
+                <label>min : </label>
                 <input
                     className={form.textLine}
                     value={input.height_min}
+                    type="number"
                     required
                     name='height_min'
                     onChange={(e) => handleChange(e)}
@@ -167,10 +173,11 @@ export default function BreedsCreate() {
                 )}
             </div>
             <div className={form.textLine}>
-                <label>Valor max : </label>
+                <label> max : </label>
                 <input
                     className={form.textLine}
                     value={input.height_max}
+                    type="number"
                     required
                     name='height_max'
                     onChange={(e) => handleChange(e)}
@@ -181,10 +188,11 @@ export default function BreedsCreate() {
             </div>
             <h4>Peso</h4>
             <div className={form.textLine}>
-                <label>valor minimo : </label>
+                <label> min : </label>
                 <input
                     className={form.textLine}
                     value={input.weight_min}
+                    type="number"
                     required
                     name='weight_min'
                     onChange={(e) => handleChange(e)}
@@ -194,10 +202,11 @@ export default function BreedsCreate() {
                 )}
             </div>
             <div className={form.textLine}>
-                <label>valor maximo : </label>
+                <label> max : </label>
                 <input
                     className={form.textLine}
                     value={input.weight_max}
+                    type="number"
                     required
                     name='weight_max'
                     onChange={(e) => handleChange(e)}
@@ -208,7 +217,7 @@ export default function BreedsCreate() {
             </div>
             <h4>Esperanza de vida</h4>
             <div className={form.textLine}>
-                <label>Valor min : </label>
+                <label> min : </label>
                 <input
                     className={form.textLine}
                     type="number"
@@ -221,7 +230,7 @@ export default function BreedsCreate() {
                 )}
             </div>
             <div className={form.textLine}>
-                <label>Valor max : </label>
+                <label> max : </label>
                 <input
                     className={form.textLine}
                     type="number"
@@ -255,7 +264,7 @@ export default function BreedsCreate() {
                 {input.temperament.map((el, i) =>
                     <div className="divTem" key={i + 1}>
                         
-                        <button className={form.textLine} type="button" onClick={() => handleDelete(el)}  ><p>{el}</p></button>
+                        <button className={form.btn_tmp} type="button" onClick={() => handleDelete(el)}  ><p className={form.p}>{el}</p></button>
                     </div>
                 )}
             </div>
@@ -267,6 +276,7 @@ export default function BreedsCreate() {
                 </div>
 
             </form>
+        </div>
         </div>
     )
 }

@@ -30,21 +30,22 @@ function rootReducer( state = initialState,action){
                     temperaments: action.payload,
                 }
             case 'ORDER_BY_NAME':
+                console.log(state.DogsFiltrados)
                 let sortdArr =action.payload=== 'asc' ?
                 state.DogsFiltrados.sort(function(a,b){
-                    if(a.name > b.name){
+                    if(a.name.toLowerCase() > b.name.toLowerCase()){
                         return 1;
                     }
-                    if(b.name > a.name){
+                    if(b.name.toLowerCase() > a.name.toLowerCase()){
                         return -1;
                     }
                     return 0
                 }):
                 state.DogsFiltrados.sort(function(a,b){
-                    if(a.name > b.name){
+                    if(a.name.toLowerCase() > b.name.toLowerCase()){
                         return -1;
                     }
-                    if(b.name > a.name){
+                    if(b.name.toLowerCase() > a.name.toLowerCase()){
                         return 1;
                     }
                     return 0;
@@ -75,7 +76,7 @@ function rootReducer( state = initialState,action){
                     return 0
                 }):
                 state.DogsFiltrados.sort(function(a,b){
-                    console.log("entrando a")
+                    
                     
                     if(a.weight[0] > b.weight[0]){
                         return -1;
@@ -114,6 +115,10 @@ function rootReducer( state = initialState,action){
                 return{
                     ...state,
                     detail: action.payload
+                }
+                case "CREATE_DOGS":
+                return{
+                    ...state
                 }
             default :
             return state

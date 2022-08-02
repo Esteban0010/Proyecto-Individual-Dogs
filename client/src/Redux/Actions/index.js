@@ -1,8 +1,4 @@
 import axios from 'axios';
-export const GET_ALL_DOGS = " OBTENER TODOS LOS DOGS";
-export const GET_ID_RAZA = "OBTENER UNA RAZA";
-export const FILTER_CREATED = "FILTRA DEPENDIENDO DE DONDE PROVIEEN LOS DOGS"
-
 
 export function getDogs() {
     return async function (dispatch) {
@@ -44,6 +40,7 @@ export function postBreeds(payload) {
         try {
             const info = await axios.post('http://localhost:3001/dogs', payload)
             return dispatch({
+                type: "CREATE_DOGS",
                 payload: info.data
             })
         } catch (error) {
@@ -84,7 +81,7 @@ export function getDetail(id) {
         try {
             let json = await axios.get(`http://localhost:3001/dogs/${id}`);
             return dispatch({
-                type: 'GET_DETAILS',
+                type:'GET_DETAILS',
                 payload: json.data
             })
         } catch (error) {

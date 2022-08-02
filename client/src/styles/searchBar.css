@@ -1,0 +1,8 @@
+.btn{
+  background-image:linear-gradient(rgba(241, 151, 99, 0.925), rgba(138, 125, 121, 0.863)50%);
+  width: 100px;
+  height: 30px;
+  border-radius: 10px;
+  border: none;
+  margin-left: 40px;
+}

@@ -1,0 +1,7 @@
+.cartel{
+    text-align: center;
+    background-image: linear-gradient(rgba(139, 68, 46, 0.525), rgba(248, 236, 232, 0.863));
+    border-radius: 12%;
+    height: 500px;
+    width: 850px;
+}

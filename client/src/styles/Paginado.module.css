@@ -6,14 +6,23 @@
    grid-template-rows: 1fr;
    grid-column-gap: 1px;
    float: left;
+   padding-bottom: 5px;
 } 
 .button_pag {
    width: 40px;
    border-radius: 25%;
-   background-color: #4da3c5; 
+   background-color: #e64949; 
    color: rgb(24, 6, 6);
    text-align: center;
    text-decoration: none;
    display: inline-block;
    font-size: 16px;
+   border: none;
 } 
+.button_pag:focus{
+   background-color: #f7d4d4;
+}
+.button_pag:hover{
+   border-color: aliceblue;
+   transform: translateY(-3px);
+}
