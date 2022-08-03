@@ -120,6 +120,40 @@ router.post("/", async (req, res) => {
     }
 });
 
+router.delete('/:id', async (req,res,next)=>{
+    try {
+        const {id}= req.params;
+        await Dog.destroy({
+            where:{
+                id:id
+            }
+        })
+        res.send("Raza eliminada")
+    } catch (error) {
+        next(error)
+    }
+})
+
+router.put('/:id', async(req,res,next)=>{
+    try {
+        const {id}=req.params
+        const{name,weight,height,temperament}=req.body
+        await Dog.update({
+            name:name,
+            weight:weight,
+            height:height,
+        },
+        {
+            where:{
+                id:id
+            }
+        })
+        res.send("raza actualizada")
+
+    } catch (error) {
+        next(error)  
+    }
+} )
 
 
 module.exports = router;

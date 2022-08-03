@@ -100,7 +100,7 @@ function rootReducer( state = initialState,action){
                     DogsFiltrados:sortdWeight
                 }
             case 'FILTER_CREATED':
-                const createdFilter = action.payload === 'created' ? state.DogsFiltrados.filter(e => e.createdInDb) : state.DogsFiltrados.filter(e => !e.createdInDb);
+                const createdFilter = action.payload === 'created' ? state.DogsFiltrados.filter(e => e.createdInDb) : state.dogs.filter(e => !e.createdInDb);
                 return{
                     ...state,
                     DogsFiltrados: createdFilter
@@ -120,6 +120,7 @@ function rootReducer( state = initialState,action){
                 return{
                     ...state
                 }
+           
             default :
             return state
     }

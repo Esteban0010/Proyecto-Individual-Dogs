@@ -23,6 +23,7 @@
 
 .buttonn{
     border: none;
+    padding: 8px;
     background-color: rgba(221, 157, 157, 0);
     border-radius: 8px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from 'react-router-dom';
-import { postBreeds, getTemperament, getDogs } from '../../Redux/Actions/index.js';
+import { postBreeds, getTemperament } from '../../Redux/Actions/index.js';
 import { useDispatch, useSelector } from 'react-redux';
 import form from '../../styles/Formulario.module.css'
 import house from '../../images/house_home.png'
@@ -96,7 +96,6 @@ export default function BreedsCreate() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(errores,"AAAAAAAA")
     if(!Object.keys(errores).length ){
         let temp = temperaments.filter(t => input.temperament.includes(t.name))
         temp = temp.map(t => t.id)

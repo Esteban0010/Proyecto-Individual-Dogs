@@ -20,11 +20,10 @@ export default function Detail() {
             setLoading(false)
         }, 2000)
         dispatch(getDetail(id))
-    }, [dispatch])
+    }, [])
 
     let myBreeds = useSelector((state) => state.detail)
     let arr = []
-    console.log(myBreeds, " dataaaaaaaaa!!!!!!")
     
     return (
         <div className={fondo.black}>

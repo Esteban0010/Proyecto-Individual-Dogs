@@ -10,23 +10,24 @@ export default function SearchBar (){
     const [name,setName] = useState('');
 
     function handleImputChange(e){
-       e.preventDefault()
        setName(e.target.value)
     }
 
     function handleSubmit(e){
         e.preventDefault()
         dispatch(getNameDogs(name))
+        setName("")
     }
 
     return(
         <div >
             <input
+            value={name}
             type = 'text'
             placeholder="Buscar..."
             onChange={(e) =>handleImputChange(e)}
             />
-            <button  type= 'submit' onClick={(e)=> handleSubmit(e)} className={s.btn}>Buscar</button>
+            <button  type="submit" onClick={(e)=> handleSubmit(e)} className={s.btn}>Buscar</button>
         </div>
     )
 }

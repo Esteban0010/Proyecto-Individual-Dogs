@@ -1,6 +1,11 @@
 import axios from 'axios';
 
 export function getDogs() {
+    // return fetch('http://localhost:3001/dogs')
+    // .then((response) => response.json())
+    // .then((json)=>{
+    //     dispatch({type: GET_ALL_DOGS, payload:json.data})
+    // })
     return async function (dispatch) {
         var json = await axios.get('http://localhost:3001/dogs', {
 
@@ -51,7 +56,6 @@ export function postBreeds(payload) {
 
 
 export function filterCreated(payload) {
-    console.log("entre a la accion")
     return {
         type: "FILTER_CREATED",
         payload
@@ -64,15 +68,8 @@ export function orderByName(payload) {
     }
 }
 export function orderByWeight(payload) {
-    console.log(payload)
     return {
         type: 'ORDER_BY_WEIGHT',
-        payload
-    }
-}
-export function filterByTemperament(payload) {
-    return {
-        type: 'FILTER_BY_TEMPERAMENT',
         payload
     }
 }
@@ -89,3 +86,10 @@ export function getDetail(id) {
         }
     }
 }
+export function filterByTemperament(payload) {
+    return {
+        type: 'FILTER_BY_TEMPERAMENT',
+        payload
+    }
+}
+
