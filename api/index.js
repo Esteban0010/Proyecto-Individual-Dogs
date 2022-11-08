@@ -24,7 +24,7 @@ const {getAllTemperament} = require('./src/Utils/getAllTemperament.js')
 // Syncing all the models at once.
 conn.sync({ force: true}).then(() => {
   getAllTemperament();
-  server.listen(3001, () => {
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
+  server.listen(process.env.PORT || 3001, () => {
+    console.log(`listening at ${process.env.PORT || 3001}`); // eslint-disable-line no-console
   });
 });
