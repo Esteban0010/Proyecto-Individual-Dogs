@@ -140,7 +140,7 @@ export default function BreedsCreate() {
                <img className={form.img} src={house} alt="no se encontro imagen"/>
             </button></Link>
         <h1>Crea tu personaje</h1>
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form className={form.container} onSubmit={(e) => handleSubmit(e)}>
             <div >
                 <label>Nombre : </label>
                 <input

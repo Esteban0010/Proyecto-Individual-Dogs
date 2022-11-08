@@ -1,21 +1,15 @@
 .black{
-    background-color: black;
-    width: 1368px;
-    height: 1300px;
+    background-image:linear-gradient(rgba(253, 150, 33, 0.985), rgba(235, 210, 160, 0.863)80%);
+   width: 100vw;
     display: flex;
+    min-height: 100vh;
+    border: blue solid;
+    justify-content: center;
+}
+.container{
+    width: 400px;
 }
 
-
-.body{background-image:linear-gradient(rgba(233, 97, 56, 0.925), rgba(160, 91, 72, 0.863)), url('../images/Fondo_bg.jpg') ;
-    
-    background-size: 700px;
-    color: rgb(190, 190, 190);
-    padding: 50px;
-    border-radius: 10px;
-    margin: 0 auto;
-    width: 300px;
-    font-size: 0.8em;
-}
 .textLine{
     outline: none;
     border: solid 1px #ccc;

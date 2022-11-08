@@ -1,33 +1,23 @@
-.black{
-    background-color: black;
-    width: 1368px;
-    height: 680px;
-    display: flex;
-}
 
 .ff{
     display: flex;
     align-items: center;
-    background-color: rgba(161, 124, 55, 0.705);
-    margin-top: 40px;
-    margin-left: 150px;
-    width: 800px;
-    height:60%;
-    padding: 100px;
-    justify-content: space-between;
+    background-image:linear-gradient(rgba(253, 150, 33, 0.985), rgba(235, 210, 160, 0.863)80%);
+    justify-content: center;
+    min-height: 100vh;
 }
 .card {
-    background-image: linear-gradient(rgba(139, 68, 46, 0.925), rgba(248, 236, 232, 0.863));
+    background-image: linear-gradient(rgba(251, 94, 3, 0.925), rgba(248, 236, 232, 0.863));
     text-decoration: none;
     padding-bottom: 10px;
     border-radius: 15%;
     padding: 12px;
-    width: 330;
+    min-width: 330px;
+    max-width: 530px;
     height: 430;
     border-radius: 8px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
     overflow: hidden;
-    margin: 120px;
     text-align: center;
     transition: all 0.25s;
 }
@@ -55,6 +45,7 @@
     border-radius: none;
     border: none;
     border-radius: 20%;
+    margin-left: 40px;
 }
 
 .button:hover{
@@ -64,4 +55,14 @@
     padding-left: 300px;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+@media(max-width:550px){
+    .ff{
+        display: block;
+        
+    }
+    .button{
+        margin: 30px;
+    }
 }

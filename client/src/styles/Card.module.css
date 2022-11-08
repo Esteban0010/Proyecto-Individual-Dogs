@@ -1,15 +1,13 @@
 .card {
-    background-image: linear-gradient(rgba(139, 68, 46, 0.925), rgba(248, 236, 232, 0.863));
+    background-image: linear-gradient(rgba(251, 94, 3, 0.925), rgba(248, 236, 232, 0.863));
     text-decoration: none;
     padding: 10px;
-    padding-bottom: 10px;
     border-radius: 15%;
-    width: 330;
-    height: 430;
+    width: 250px;
+    min-height: 280px;
     border-radius: 8px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
     overflow: hidden;
-    margin: 20px;
     text-align: center;
     transition: all 0.25s;
 }
@@ -24,8 +22,8 @@
     text-decoration: none;
     border-radius: 15%;
     padding: 20px;
-    width: 300px;
-    height: 200px;
+    width: 220px;
+    height: 150px;
 }
 
 .card_home_h4 {
@@ -58,14 +56,10 @@
    box-sizing:border-box;
 }
 
-   body{
-   background-color:#edeef6;
-   font-family:'Poppins',sans-serif;
-   display:flex;
-   align-items:center;
-   justify-content:center;
-   min-height:100vh;
-   margin:0;
+@media(max-width:1000px){
+    .card {
+        margin: 0 auto;
+    }
 }
 
 

@@ -2,8 +2,7 @@
 
 .fondo {
     overflow: hidden;
-    background-image:linear-gradient(rgba(241, 151, 99, 0.925), rgba(138, 125, 121, 0.863)50%);
-    border-radius: 2%;
+    background-image:linear-gradient(rgba(253, 150, 33, 0.985), rgba(235, 210, 160, 0.863)80%);
 }
 
 .title {
@@ -16,13 +15,14 @@
 }
 
 .card_home {
-    display: flex;
-    justify-content: center;
+    margin: 30px auto;
+    justify-self: center;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     grid-column-gap: 8px;
-    grid-row-gap: 10px;
+    grid-row-gap: 20px;
 }
 
 .spinner {border-radius: 50%;
@@ -35,7 +35,6 @@
     display: flex;
     justify-content: center;
    padding-bottom: 12;
-
 }
 
 .ajustePag {
@@ -61,18 +60,17 @@
     background-image:linear-gradient(rgba(241, 151, 99, 0.925), rgba(138, 125, 121, 0.863)50%); ;
 }
 .btnCreate{
-    background-image:linear-gradient(rgba(241, 151, 99, 0.925), rgba(138, 125, 121, 0.863)50%);
+    margin: 10px;
     width: 100px;
     height: 30px;
     border-radius: 10px;
     border: none;
-    margin-left: 40px;
 }
 .btnCreate:hover{
     transform: translateY(-5px);
     width: 100px;
     height: 35px;
-    background-image:linear-gradient(rgba(241, 151, 99, 0.925), rgba(138, 125, 121, 0.863)50%); ;
+    background-image:linear-gradient(rgba(255, 249, 245, 0.925), rgba(138, 125, 121, 0.863)50%); ;
 }
 .msj_no{
     margin-left: 430px;
@@ -87,7 +85,7 @@
     width: 400px;
 }
 .btnFilt{
-    background-image:linear-gradient(rgba(241, 151, 99, 0.925), rgba(138, 125, 121, 0.863)50%);
+    background-image:linear-gradient(rgba(241, 151, 99, 0.925));
     width: 100px;
     height: 30px;
     border-radius: 10px;
@@ -98,4 +96,52 @@
     transform: translateY(-5px);
     width: 100px;
     background-image:linear-gradient(rgba(241, 151, 99, 0.925), rgba(138, 125, 121, 0.863)50%); ;
+}
+
+@media(max-width:1000px){
+    .card_home {
+        margin: 30px auto;
+        display: grid;
+        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 20px;
+    }
+
+    .paginacion {
+        display: flex;
+        justify-content: center;
+       padding-bottom: 12;
+       margin: 20px 20px;
+    }
+}
+
+@media(max-width:550px){
+    .card_home {
+        margin: 30px auto;
+        display: grid;
+        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 20px;
+    }
+
+    .btnCreate{
+        margin:10px 20px;
+        width: 100px;
+        height: 30px;
+        border-radius: 10px;
+        border: none;
+    }
+
+    .btn{
+        background-color: #6a6a6a00;
+        border-radius: none;
+        border: none;
+        border-radius: 20%;
+    }
 }

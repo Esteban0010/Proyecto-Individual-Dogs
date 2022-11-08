@@ -76,7 +76,7 @@ export default function Home() {
     return (
         <div className={home.fondo}>
 
-            <h1 className={home.title}> Pagina de  Perros</h1>
+            <h1 className={home.title}> BookDog</h1>
             <div>
                 <div className={nav.navBar}>
                     <Link to='/'><button className={home.btnCreate}>Inicio</button></Link>

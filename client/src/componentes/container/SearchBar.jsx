@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getNameDogs } from "../../Redux/Actions";
-import s from '../../styles/searchBar.css'
+import s from "../../styles/searchBar.css"
 
 
 export default function SearchBar (){
@@ -20,8 +20,9 @@ export default function SearchBar (){
     }
 
     return(
-        <div >
+        <div  className={s.containerSearch}>
             <input
+            className={s.input}
             value={name}
             type = 'text'
             placeholder="Buscar..."

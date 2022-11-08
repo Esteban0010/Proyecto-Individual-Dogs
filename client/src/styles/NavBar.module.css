@@ -1,5 +1,5 @@
 .navBar{
-    background-image:linear-gradient(rgba(214, 25, 12, 0.8), rgba(116, 87, 116, 0.8)), url('../images/Fondo_bg.jpg') ;
+    background-color: rgb(251, 94, 3);;
     background-size: 900px;
     width: 100%;
     margin: auto;
@@ -13,5 +13,19 @@
     list-style: none;
     display: inline-block;
     margin: 0 5px;
+}
+
+@media(max-width:550px){
+    .navBar{
+    background-color: rgb(251, 94, 3);;
+    background-size: 900px;
+    width: 100%;
+    margin: auto;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    display: block;
+    align-items: center;
+    justify-content: spa;
+}
 }
 

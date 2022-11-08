@@ -1,18 +1,31 @@
 .lpg{
-    text-align: center;
-    height: 645px;
-    width: 1350px;
-    background-size: 700px;   
     display: flex;
+    background-color: rgb(253, 150, 33);
+    min-height: 100vh;
+}
+
+.conteiner{
+    margin: 0 100px;
+    display: flex
 }
 .cartel{
-    margin-left: 260px;
-    text-align: center;
+    text-align: start;
     border-radius: 12%;
+    max-width :600px;
     height: 500px;
-    width: 850px;
-    margin-top: 30px;
+    margin-top: auto;
     padding: 20px;
+    color: rgb(33, 33, 47);
+}
+.Title{
+    color: black;
+    font-size: 35px;
+    font-weight: 100px;
+    min-width: 375px;
+}
+.linea{
+    background:black;
+    width: 390px;
 }
 .img{
     width: 100px;
@@ -20,13 +33,29 @@
 }
 
 .buttonn{
+    margin-left: 100px;
+    margin-top: 50px;
+    background-color: rgb(251, 94, 3);
+    cursor: pointer;
     border: none;
     padding: 8px;
-    background-color: rgba(221, 157, 157, 0);
     border-radius: 8px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
 .buttonn:hover {
     transform: translateY(-5px);
     box-shadow: o 12px 16px rgba(0, 0, 0, 0.2);
+}
+
+.dogCard{
+    height: 450px;
+    width: 400px;
+}
+
+.conteinerimg{
+    margin: auto 0;
+    background-color: rgb(251, 94, 3);
+    height: 500px;
+    width: 400px;
+    border-radius: 50px 50px 50px 200px;
 }

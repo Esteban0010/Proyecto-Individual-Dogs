@@ -26,7 +26,7 @@ export default function Detail() {
     let arr = []
     
     return (
-        <div className={fondo.black}>
+       
             <div className={fondo.ff}>
                 {loading
                     ? <div>
@@ -70,6 +70,6 @@ export default function Detail() {
                     <button className={fondo.button}>volver</button>
                 </Link>
             </div>
-        </div>
+        
     )
 }
