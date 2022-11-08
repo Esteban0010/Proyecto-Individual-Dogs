@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const DogsMiddlewares =require('./Middlewares/Dogs.js');
+const DogsMiddlewares =require('./middlewares/Dogs.js');
 const TempMiddlewares = require('./middlewares/Temperament.js')
 
 // Importar todos los routers;
